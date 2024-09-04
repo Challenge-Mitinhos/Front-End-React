@@ -26,13 +26,10 @@ export default function HeaderComponent({name,strong,icon}:HeaderComponentProps)
         color: ${props => props.$strong? "#01A1FD":"#1E272F"}
     `;
 
-    const Icon = styled.div``
 
     return (
         <>
-            <Icon>
-              {icon}
-            </Icon>
+            {icon}
             <P $strong={strong}>{name}</P>
         </>
     )
