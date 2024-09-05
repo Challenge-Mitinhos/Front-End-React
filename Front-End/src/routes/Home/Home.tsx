@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
+import { useEffect, useState } from "react";
 
 const Background = styled.div`
     height: 90vh;
@@ -130,9 +131,27 @@ const Ai = styled.a`
             background-position: -200%;
         }
     }
+
+    @media screen and (max-width: 756px){
+        font-size: 1em;
+    }
 `
 
 export default function Home() {
+    const [isMobile, setIsMobile] = useState(window.innerWidth<821)
+
+    const handleResize = () => {
+        setIsMobile(window.innerWidth<821);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
+
     return(
         <>
             <Header/>
@@ -141,7 +160,7 @@ export default function Home() {
                     <Image src="/img/Robotics-cuate.svg" alt="RobotIMG" style={{height:"35em", width:"35em"}}/>
                     <Content>
                         <h1>AutoCare Bot</h1>
-                        <p>Seu assistente virtual especializado em mecânica automotiva, impulsionado pela mais avançada <Ai href="">Inteligência Artificial.</Ai></p>
+                        <p>Seu assistente virtual especializado em mecânica automotiva, impulsionado pela mais avançada {isMobile?<br/>:""}<Ai href="">Inteligência Artificial.</Ai></p>
                         <Button>Inicie uma conversa</Button>
                     </Content>
                 </Glass>
