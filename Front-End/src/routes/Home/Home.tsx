@@ -31,7 +31,8 @@ const Glass = styled.div`
     align-items: center;
     
     @media screen and (max-width: 1280px) {
-        height: 30vh;
+        height: 38vh;
+
     }`
 
 const Button = styled.button`
