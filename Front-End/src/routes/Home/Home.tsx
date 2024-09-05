@@ -114,6 +114,24 @@ const Content = styled.div`
     }
 `
 
+const Ai = styled.a`
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    background: linear-gradient(to right,rgba(226,235,255,1) 0%, rgba(41,177,255,1) 50%, rgba(226,235,255,1) 100%);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-gradient 2s linear infinite;
+
+    @keyframes animate-gradient {
+        to {
+            background-position: -200%;
+        }
+    }
+`
+
 export default function Home() {
     return(
         <>
@@ -123,7 +141,7 @@ export default function Home() {
                     <Image src="/img/Robotics-cuate.svg" alt="RobotIMG" style={{height:"35em", width:"35em"}}/>
                     <Content>
                         <h1>AutoCare Bot</h1>
-                        <p>Seu assistente virtual especializado em mecânica automotiva, impulsionado pela mais avançada inteligência artificial.</p>
+                        <p>Seu assistente virtual especializado em mecânica automotiva, impulsionado pela mais avançada <Ai href="">Inteligência Artificial.</Ai></p>
                         <Button>Inicie uma conversa</Button>
                     </Content>
                 </Glass>
