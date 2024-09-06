@@ -42,7 +42,7 @@ const Button = styled.button`
     width: 25vw;
     height: 8vh;
     border-radius: 1rem;
-    font-size: 1.68rem;
+    font-size: 1.5vw;
     font-weight: 600;
     color: #fff;
     text-align: center;
@@ -157,10 +157,10 @@ export default function Home() {
             <Header/>
             <Background>
                 <Glass>
-                    <Image src="/img/Robotics-cuate.svg" alt="RobotIMG" style={{height:"35em", width:"35em"}}/>
+                    <Image src="/img/Robotics-cuate.svg" alt="RobotIMG" style={{height:"32vw", width:"32vw"}}/>
                     <Content>
                         <h1>AutoCare Bot</h1>
-                        <p>Seu assistente virtual especializado em mecânica automotiva, impulsionado pela mais avançada {isMobile?<br/>:""}<Ai href="">Inteligência Artificial.</Ai></p>
+                        <p>Seu assistente virtual especializado em mecânica automotiva, impulsionado por tecnologia de {isMobile?<br/>:""}<Ai href="">Inteligência Artificial.</Ai></p>
                         <Button>Inicie uma conversa</Button>
                     </Content>
                 </Glass>
