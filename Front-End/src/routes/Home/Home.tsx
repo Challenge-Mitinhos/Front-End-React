@@ -32,8 +32,7 @@ const Glass = styled.div`
     align-items: center;
     
     @media screen and (max-width: 1280px) {
-        height: 38vh;
-
+        height: 17em;
     }`
 
 const Button = styled.button`
@@ -61,7 +60,7 @@ const Button = styled.button`
         align-self: center;
         font-size: 1.68rem;
         width: 60vw;
-        height: 7vh;
+        height: 4em;
     }
 
     @media screen and (max-width: 756px){

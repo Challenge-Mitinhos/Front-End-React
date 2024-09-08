@@ -51,7 +51,7 @@ const MenuMobile = styled.div<{ modalOpen: boolean }>`
     flex-direction: column;
     gap: 1.5em;
     padding: 1.5em;
-    transition: right 850ms ease;`
+    transition: right 600ms ease;`
 
 const TopMenu = styled.div`
     display: flex;
@@ -97,13 +97,13 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
                         <Title>Menu</Title>
                         <HeaderComponent icon={<CloseButton height="4.5vh" width="4.5vh" color="#1E272F"/>} onClick={() => setModalOpen(false)}/>
                     </TopMenu>
-                    <Link to={primeiroLink||""}>
+                    <Link to={primeiroLinkDestino||""}>
                         <HeaderComponent name={primeiroLink} fontSize="1.5em"/>
                     </Link>
-                    <Link to={segundoLink||""}>
+                    <Link to={segundoLinkDestino||""}>
                         <HeaderComponent name={segundoLink} fontSize="1.5em"/>
                     </Link>
-                    <Link to={ultimoLink||""}>
+                    <Link to={ultimoLinkDestino||""}>
                         <HeaderComponent name={ultimoLink} strong fontSize="2em"/>
                     </Link>
                 </MenuMobile>
