@@ -154,13 +154,13 @@ export default function Home() {
 
     return(
         <>
-            <Header/>
+            <Header primeiroLink="Time" segundoLink="ChatBot" ultimoLink="Entrar" primeiroLinkDestino='/time'/>
             <Background>
                 <Glass>
                     <Image src="/img/Robotics-cuate.svg" alt="RobotIMG" style={{height:"32vw", width:"32vw"}}/>
                     <Content>
                         <h1>AutoCare Bot</h1>
-                        <p>Seu assistente virtual especializado em mecânica automotiva, impulsionado por tecnologia de {isMobile?<br/>:""}<Ai href="">Inteligência Artificial.</Ai></p>
+                        <p>Seu assistente virtual especializado em mecânica automotiva, impulsionado por tecnologia de {isMobile?<br/>:""}<Ai>Inteligência Artificial.</Ai></p>
                         <Button>Inicie uma conversa</Button>
                     </Content>
                 </Glass>

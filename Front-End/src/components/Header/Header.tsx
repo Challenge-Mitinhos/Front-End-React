@@ -18,6 +18,10 @@ const HeaderComp = styled.div`
     @media screen and (max-width: 756px) {
         padding-left: 1em;
         padding-right: 1.5em;
+    }
+    
+    a{
+        text-decoration: none;
     }`
 
 const Buttons = styled.div`
@@ -57,11 +61,18 @@ const TopMenu = styled.div`
 const Title = styled.h1`
     font-size: 3em; `
 
-export default function Header() {
+type HeaderProps = {
+    primeiroLink?:string,
+    primeiroLinkDestino?:string,
+    segundoLink?:string,
+    segundoLinkDestino?:string,
+    ultimoLink?:string,
+    ultimoLinkDestino?:string;
+}
+
+export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,segundoLinkDestino,ultimoLink,ultimoLinkDestino}:HeaderProps) {
     
     const [modalOpen,setModalOpen] = useState(false);
-
-    let logged = false;
     
     return(
         <HeaderComp>
@@ -69,11 +80,15 @@ export default function Header() {
                 <Logo height="7vh" width="7vh"/>
             </Link>
             <Buttons>
-                <Link to={'/time'}>
-                    <HeaderComponent name="Time"/>
+                <Link to={primeiroLinkDestino||""}>
+                    <HeaderComponent name={primeiroLink}/>
                 </Link>
-                <HeaderComponent name="ChatBot"/>
-                <HeaderComponent name="Entrar" strong/>
+                <Link to={segundoLinkDestino||""}>
+                    <HeaderComponent name={segundoLink}/>
+                </Link>
+                <Link to={ultimoLinkDestino||""}>
+                    <HeaderComponent name={ultimoLink} strong/>
+                </Link>
             </Buttons>
             <ButtonCellphone>
                 <HeaderComponent icon={<MenuButton height="4.5vh" width="4.5vh" color="#1E272F"/>} onClick={() => setModalOpen(true)}/>
@@ -82,9 +97,15 @@ export default function Header() {
                         <Title>Menu</Title>
                         <HeaderComponent icon={<CloseButton height="4.5vh" width="4.5vh" color="#1E272F"/>} onClick={() => setModalOpen(false)}/>
                     </TopMenu>
-                    <HeaderComponent name="Time" fontSize="1.5em"/>
-                    <HeaderComponent name="ChatBot" fontSize="1.5em"/>
-                    <HeaderComponent name={logged?"Perfil":"Entrar"} strong fontSize="2em"/>
+                    <Link to={primeiroLink||""}>
+                        <HeaderComponent name={primeiroLink} fontSize="1.5em"/>
+                    </Link>
+                    <Link to={segundoLink||""}>
+                        <HeaderComponent name={segundoLink} fontSize="1.5em"/>
+                    </Link>
+                    <Link to={ultimoLink||""}>
+                        <HeaderComponent name={ultimoLink} strong fontSize="2em"/>
+                    </Link>
                 </MenuMobile>
             </ButtonCellphone>
         </HeaderComp>
