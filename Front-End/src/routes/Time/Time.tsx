@@ -174,12 +174,13 @@ const Card = styled.div`
     const Title = styled.h1`
         font-size: 10em;
         color: #ffffffd6;
-        text-shadow: 0 8px 32px rgba(0, 0, 0, 0.63);
+        text-shadow: 0 0 32px rgba(0, 0, 0, 0.63);
         -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: rgba(255,255,255,0.18);
         
         @media screen and (max-width: 1500px){
             font-size: 10vw;
+            text-shadow: 0 0 16px rgb(0, 0, 0, 0.3);
         }`
 
     const scrollToFuncion = (id:string): (() => void) => {
