@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header/Header";
+import Header from "../components/Header/Header";
 
 interface RegisterValues {
     email: string;

@@ -2,9 +2,10 @@ import styled from "styled-components";
 import Logo from "../../svg/Logo";
 import HeaderComponent from "./HeaderComponent";
 import MenuButton from "../../svg/MenuButton";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CloseButton from "../../svg/CloseButton";
 import { Link } from "react-router-dom";
+import { LoginContext } from "../../context/LoginContext";
 
 const HeaderComp = styled.div`
     height: 10vh;
@@ -28,12 +29,18 @@ const HeaderComp = styled.div`
         height: 6vh;
     }`
 
-const Buttons = styled.div`
+const Buttons = styled.nav`
     display: flex;
-    gap: 3.5em;
-    align-items: center;
+    
     @media screen and (max-width: 756px) {
         display: none;
+    }
+    
+    .list {
+        list-style: none;
+        display: flex;
+        gap: 3.5em;
+        align-items: center;
     }`
 
 const ButtonCellphone = styled.div`
@@ -55,7 +62,14 @@ const MenuMobile = styled.div<{ modalOpen: boolean }>`
     flex-direction: column;
     gap: 1.5em;
     padding: 1.5em;
-    transition: right 600ms ease;`
+    transition: right 600ms ease;
+    
+    .list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1.3em;
+    }`
 
 const TopMenu = styled.div`
     display: flex;
@@ -78,6 +92,14 @@ type HeaderProps = {
 export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,segundoLinkDestino,ultimoLink,ultimoLinkDestino,className}:HeaderProps) {
     
     const [modalOpen,setModalOpen] = useState(false);
+
+    const context = useContext(LoginContext);
+
+    if (!context) {
+        throw new Error("LoginComponent LoginProvider")
+    } 
+
+    const {login, toggleLogin} = context;
     
     return(
         <HeaderComp className={className}>
@@ -85,15 +107,26 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
                 <Logo height="6vh" width="6vh"/>
             </Link>
             <Buttons>
-                <Link to={primeiroLinkDestino||""}>
-                    <HeaderComponent name={primeiroLink}/>
-                </Link>
-                <Link to={segundoLinkDestino||""}>
-                    <HeaderComponent name={segundoLink}/>
-                </Link>
-                <Link to={ultimoLinkDestino||""}>
-                    <HeaderComponent name={ultimoLink} strong/>
-                </Link>
+                <ul className="list">
+                    <li>
+                        <Link to={primeiroLinkDestino||""}>
+                            <HeaderComponent name={primeiroLink}/>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to={segundoLinkDestino||""}>
+                            <HeaderComponent name={segundoLink}/>
+                        </Link>
+                    </li>
+                    {login === "deslogado" && (<li>
+                        <Link to={ultimoLinkDestino||""}>
+                            <HeaderComponent name={ultimoLink} strong/>
+                        </Link>
+                    </li>)}
+                    {login === "logado" && (<li>
+                        <HeaderComponent name="Sair" onClick={() => (toggleLogin())} strong/>
+                    </li>)}
+                </ul>
             </Buttons>
             <ButtonCellphone>
                 <HeaderComponent icon={<MenuButton height="4.5vh" width="4.5vh" color="#1E272F"/>} onClick={() => setModalOpen(true)}/>
@@ -102,23 +135,29 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
                         <Title>Menu</Title>
                         <HeaderComponent icon={<CloseButton height="4.5vh" width="4.5vh" color="#1E272F"/>} onClick={() => setModalOpen(false)}/>
                     </TopMenu>
-                    {primeiroLink && (
-                        <Link to={primeiroLinkDestino || ""}>
-                            <HeaderComponent name={primeiroLink} fontSize="1.5em" />
-                        </Link>
-                    )}
-                    
-                    {segundoLink && (
-                        <Link to={segundoLinkDestino || ""}>
-                            <HeaderComponent name={segundoLink} fontSize="1.5em" />
-                        </Link>
-                    )}
-                    
-                    {ultimoLink && (
-                        <Link to={ultimoLinkDestino || ""}>
-                            <HeaderComponent name={ultimoLink} strong fontSize="2em" />
-                        </Link>
-                    )}
+                    <ul className="list">
+                        {primeiroLink && (
+                            <li>
+                                <Link to={primeiroLinkDestino || ""}>
+                                    <HeaderComponent name={primeiroLink} fontSize="1.5em" />
+                                </Link>
+                            </li>)}
+                        {segundoLink && (
+                            <li>                            
+                                <Link to={segundoLinkDestino || ""}>
+                                    <HeaderComponent name={segundoLink} fontSize="1.5em" />
+                                </Link>
+                            
+                            </li>)}
+                        {login === "deslogado" && (<li>
+                            <Link to={ultimoLinkDestino||""}>
+                                <HeaderComponent name={ultimoLink} strong/>
+                            </Link>
+                        </li>)}
+                        {login === "logado" && (<li>
+                            <HeaderComponent name="Sair" onClick={() => (toggleLogin())} strong/>
+                        </li>)}
+                    </ul>
                 </MenuMobile>
             </ButtonCellphone>
         </HeaderComp>

@@ -14,6 +14,7 @@ const ArrowButton = styled.button`
     background-position: center;
     background-size: cover;
     backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     position: fixed;
     z-index: 234;
     left: 50%;

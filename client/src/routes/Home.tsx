@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import Header from "../../components/Header/Header";
-import { useEffect, useState } from "react";
+import Header from "../components/Header/Header";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../context/LoginContext";
 
 const Background = styled.div`
     height: 90vh;
@@ -59,8 +61,7 @@ const Button = styled.button`
     @media screen and (max-width: 1280px) {
         align-self: center;
         font-size: 1.68rem;
-        width: 100%;
-        height: 6vh;
+        height: 4em;
     }
 
     @media screen and (max-width: 756px){
@@ -146,16 +147,18 @@ export default function Home() {
         };
       }, []);
 
+    const navigate = useNavigate();
+
     return(
         <>
-            <Header primeiroLink="Time" segundoLink="ChatBot" ultimoLink={"Entrar"} primeiroLinkDestino='/time' segundoLinkDestino='/chatbot' ultimoLinkDestino='/login'/>
+            <Header primeiroLink="Time" segundoLink="ChatBot" ultimoLink="Entrar" primeiroLinkDestino='/time' segundoLinkDestino='/chatbot' ultimoLinkDestino='/login' />
             <Background>
                 <Glass>
                     <Image src="/img/Robotics-cuate.svg" alt="RobotIMG" style={{height:"32vw", width:"32vw"}}/>
                     <Content>
                         <h1>AutoCare Bot</h1>
                         <p>Seu assistente virtual especializado em mecânica automotiva, impulsionado por tecnologia de {isMobile?<br/>:""}<Ai>Inteligência Artificial.</Ai></p>
-                        <Button>Inicie uma conversa</Button>
+                        <Button onClick={() => (navigate('chatbot'))}>Inicie uma conversa</Button>
                     </Content>
                 </Glass>
             </Background>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Header from "../../components/Header/Header";
+import Header from "../components/Header/Header";
 import { Link } from "react-router-dom";
-import ScrollTop from "../../components/ScrollTop";
+import ScrollTop from "../components/ScrollTop";
 
 const Content = styled.div`
     display: flex;
@@ -273,17 +273,17 @@ export default function Time() {
                         <Social className="social">
                                 <Link to="https://github.com/MikaelDv">
                                     <div>
-                                        <img src="/img/github-brands-solid.svg" alt="GitHub icon"/>
+                                        <img style={{height: "27.42px", width: "24px"}}  src="/img/github-brands-solid.svg" alt="GitHub icon"/>
                                     </div>
                                 </Link>
                                 <Link to="https://instagram.com/011mikael" target="_blank" >
                                     <div>
-                                        <img src="/img/instagram-brands-solid.svg" alt="Instagram icon" />
+                                        <img style={{height: "27.42px", width: "24px"}} src="/img/instagram-brands-solid.svg" alt="Instagram icon" />
                                     </div>
                                 </Link>
                                 <Link to="https://www.linkedin.com/in/mikael-sanches/" target="_blank">
                                     <div>
-                                        <img src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" />
+                                        <img style={{height: "27.42px", width: "24px"}} src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" />
                                     </div>
                                 </Link>
                             </Social>
@@ -298,17 +298,17 @@ export default function Time() {
                         <Social className="social">
                                 <Link to="https://github.com/Murilo-Capristo">
                                     <div>
-                                        <img src="/img/github-brands-solid.svg" alt="GitHub icon"/>
+                                        <img style={{height: "27.42px", width: "24px"}} src="/img/github-brands-solid.svg" alt="GitHub icon"/>
                                     </div>
                                 </Link>
                                 <Link to="https://instagram.com/capristin" target="_blank" >
                                     <div>
-                                        <img src="/img/instagram-brands-solid.svg" alt="Instagram icon" />
+                                        <img style={{height: "27.42px", width: "24px"}} src="/img/instagram-brands-solid.svg" alt="Instagram icon" />
                                     </div>
                                 </Link>
                                 <Link to="https://www.linkedin.com/in/murilo-capristo-78809a306" target="_blank">
                                     <div>
-                                        <img src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" />
+                                        <img style={{height: "27.42px", width: "24px"}} src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" />
                                     </div>
                                 </Link>
                             </Social>
@@ -322,17 +322,17 @@ export default function Time() {
                             <Social className="social">
                                 <Link to="https://github.com/StaniukaitisPaula">
                                     <div>
-                                        <img src="/img/github-brands-solid.svg" alt="GitHub icon"/>
+                                        <img style={{height: "27.42px", width: "24px"}} src="/img/github-brands-solid.svg" alt="GitHub icon"/>
                                     </div>
                                 </Link>
                                 <Link to="https://instagram.com/p_blesaa" target="_blank" >
                                     <div>
-                                        <img src="/img/instagram-brands-solid.svg" alt="Instagram icon" />
+                                        <img style={{height: "27.42px", width: "24px"}} src="/img/instagram-brands-solid.svg" alt="Instagram icon" />
                                     </div>
                                 </Link>
                                 <Link to="https://www.linkedin.com/in/paula-blesa-staniukaitis-5ab53224a/" target="_blank">
                                     <div>
-                                        <img src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" />
+                                        <img style={{height: "27.42px", width: "24px"}} src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" />
                                     </div>
                                 </Link>
                             </Social>

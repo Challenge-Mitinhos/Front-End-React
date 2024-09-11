@@ -1,10 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import styled from "styled-components";
-import Header from "../../components/Header/Header";
+import Header from "../components/Header/Header";
+import { LoginContext } from "../context/LoginContext";
 
 interface Values {
   email: string;
@@ -100,6 +101,22 @@ const Wrapper = styled.div`
     @media screen and (max-width: 520px){
       font-size: 18px;
       right: 18px
+    }
+  }
+
+  .form-error {
+    font-size: 12px;
+    position: absolute;
+    top: 165px;
+    color: rgb(255, 58, 58, 0.85);
+
+    @media screen and (max-width: 520px){
+      top: 139px;
+    }
+
+    @media screen and (max-width: 420px){
+      font-size: 11px;
+      top: 118px;
     }
   }
 
@@ -200,6 +217,17 @@ const Wrapper = styled.div`
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const context = useContext(LoginContext);
+
+  if (!context) {
+    throw new Error("LoginComponent LoginProvider")
+  } 
+
+  const { toggleLogin } = context;
+  const [lockOpen, setLockOpen] = useState(false);
+
+  const from = location.state?.from?.pathname || '/';
 
   const handleClick = (values:Values) => {
     Axios.post("http://localhost:3001/login", {
@@ -207,9 +235,9 @@ export default function Login() {
       password: values.password
     }).then((response) => {
       if (response.status === 200) {
-        navigate('/');
+        toggleLogin();
+        navigate(from, {replace: true});
       } 
-
       console.log(response)
     });
   };  
@@ -231,8 +259,6 @@ export default function Login() {
   const handleMouseLeave = () => {
     document.getElementById("lock")!.style.cursor = 'default';
   };
-
-  const [lockOpen, setLockOpen] = useState(false);
 
   return (
     <div>
