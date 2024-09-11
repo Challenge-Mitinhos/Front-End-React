@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { scrollTop } from "../util";
 
 const ArrowButton = styled.button`
     width: 3.5em;
@@ -32,13 +33,6 @@ const ArrowButton = styled.button`
         cursor: pointer;
     }
 `
-export const scrollTop = (): (() => void) => {
-    return () => {
-        window.scrollTo({
-            top: 0,
-            behavior:"smooth"});
-    }
-}
 
 export default function ScrollTop() {
     const [scrolled, setScrolled] = useState(false);
@@ -61,7 +55,7 @@ export default function ScrollTop() {
     
     return(
         <>
-            <ArrowButton className={scrolled? 'visible' : ''} onClick={scrollTop()}></ArrowButton>
+            <ArrowButton className={scrolled? 'visible' : ''} onClick={scrollTop}></ArrowButton>
         </>
     )
 }

@@ -15,7 +15,6 @@ const Content = styled.div`
 
 const Glass = styled.div`
     width: 80vw;
-    height: 70vh;
     margin: auto;
     background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
     backdrop-filter: blur(1em);
@@ -29,16 +28,17 @@ const Glass = styled.div`
     align-items: center;
     
     @media screen and (max-width: 1280px) {
-        height: 17em;
+        padding: 20px 20px 20px 20px;
+        display: block;
     }`
 
 const Button = styled.button`
     margin-top: .5em;
     background-color: #01A1FD;
-    width: 25vw;
+    width: 100%;
     height: 8vh;
     border-radius: 1rem;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     font-weight: 600;
     color: #fff;
     text-align: center;
@@ -56,7 +56,6 @@ const Button = styled.button`
     @media screen and (max-width: 1280px) {
         align-self: center;
         font-size: 1.68rem;
-        width: 60vw;
         height: 4em;
     }
 
@@ -85,7 +84,6 @@ const Text = styled.div`
 
     p {
         font-size: 1.3em;
-        font-weight: 300;
         color: #1E272F;
         width: 30vw;
     }
@@ -150,7 +148,7 @@ const Card = styled.div`
     p {
         color: #D7D7D7;
         font-size: 1em;
-        font-weight: 100;
+        font-weight: 300;
     }
     
     .textBlock {
@@ -251,11 +249,11 @@ const scrollToFunction = (selected:string): (() => void) => {
 
 
 export default function Time() {
-    let logged = false;
+    const logged = false;
 
     return(
         <>  
-            <Header primeiroLink="Início" segundoLink="ChatBot" ultimoLink={logged?"Perfil":"Entrar"} primeiroLinkDestino='/' className="header"/>
+            <Header primeiroLink="Início" segundoLink="ChatBot" ultimoLink={logged?"Perfil":"Entrar"} primeiroLinkDestino='/' ultimoLinkDestino='/login' className="header"/>
             <Content>
                 <ScrollTop/>
                 <FirstSection>

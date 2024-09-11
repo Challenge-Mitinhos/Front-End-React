@@ -1,7 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 interface RegisterValues {
     email: string;
@@ -10,12 +11,16 @@ interface RegisterValues {
 }
 
 export default function Registro() {
+    const navigate = useNavigate();
+
     const handleClickRegister = (values:RegisterValues) => {
         Axios.post("http://localhost:3001/register", {
           email: values.email,
           password: values.password
         }).then((response) => {
-            <Navigate to={'/login'}/>
+            if (response.status === 200) {
+                navigate('/login')
+            }
             console.log(response)
         });
     };
@@ -37,6 +42,7 @@ export default function Registro() {
 
     return(
         <div>
+            <Header/>
             <div className="cadastro">
                 <h1>Cadastro</h1>
                 <Formik 

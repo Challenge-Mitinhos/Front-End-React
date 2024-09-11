@@ -22,6 +22,10 @@ const HeaderComp = styled.div`
     
     a{
         text-decoration: none;
+    }
+    
+    .link {
+        height: 6vh;
     }`
 
 const Buttons = styled.div`
@@ -77,8 +81,8 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
     
     return(
         <HeaderComp className={className}>
-            <Link to={'/'}>
-                <Logo height="7vh" width="7vh"/>
+            <Link to={'/'} className="link">
+                <Logo height="6vh" width="6vh"/>
             </Link>
             <Buttons>
                 <Link to={primeiroLinkDestino||""}>
@@ -98,15 +102,23 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
                         <Title>Menu</Title>
                         <HeaderComponent icon={<CloseButton height="4.5vh" width="4.5vh" color="#1E272F"/>} onClick={() => setModalOpen(false)}/>
                     </TopMenu>
-                    <Link to={primeiroLinkDestino||""}>
-                        <HeaderComponent name={primeiroLink} fontSize="1.5em"/>
-                    </Link>
-                    <Link to={segundoLinkDestino||""}>
-                        <HeaderComponent name={segundoLink} fontSize="1.5em"/>
-                    </Link>
-                    <Link to={ultimoLinkDestino||""}>
-                        <HeaderComponent name={ultimoLink} strong fontSize="2em"/>
-                    </Link>
+                    {primeiroLink && (
+                        <Link to={primeiroLinkDestino || ""}>
+                            <HeaderComponent name={primeiroLink} fontSize="1.5em" />
+                        </Link>
+                    )}
+                    
+                    {segundoLink && (
+                        <Link to={segundoLinkDestino || ""}>
+                            <HeaderComponent name={segundoLink} fontSize="1.5em" />
+                        </Link>
+                    )}
+                    
+                    {ultimoLink && (
+                        <Link to={ultimoLinkDestino || ""}>
+                            <HeaderComponent name={ultimoLink} strong fontSize="2em" />
+                        </Link>
+                    )}
                 </MenuMobile>
             </ButtonCellphone>
         </HeaderComp>

@@ -5,13 +5,13 @@ type HeaderComponentProps = {
     strong?:boolean,
     icon?:React.ReactNode,
     onClick?:()=>void,
-    fontSize?:string;
+    fontSize?:string,
+    style?:React.CSSProperties;
 }
 
 const P = styled.p<{strong?:boolean, fontSize?:string;}>`
-    font-family: 'Porto-Font', sans-serif;
     font-size: ${(props) => props.fontSize || (props => props.strong? "3vh":"2.2vh")};
-    font-weight: ${props => props.strong? "600":"300"};
+    font-weight: ${props => props.strong? "700":"500"};
     color: ${props => props.strong? "#01A1FD":"#1E272F"};
     transition: all ease-in-out 0.15s;
 
@@ -28,10 +28,10 @@ const DivStyled = styled.div`
 `
 
 
-export default function HeaderComponent({name,strong,icon,onClick,fontSize}:HeaderComponentProps) {
+export default function HeaderComponent({name,strong,icon,onClick,fontSize,style}:HeaderComponentProps) {
 
     return (
-        <div onClick={onClick}>
+        <div onClick={onClick} style={style}>
             <DivStyled>
                 {icon}
             </DivStyled>
