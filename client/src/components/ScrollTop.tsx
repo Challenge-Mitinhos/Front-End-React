@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { scrollTop } from "../util";
+import { scrollTop } from "../util/util.ts";
 
 const ArrowButton = styled.button`
     width: 3.5em;

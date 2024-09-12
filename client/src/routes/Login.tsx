@@ -9,8 +9,7 @@ import { LoginContext } from "../context/LoginContext";
 
 interface Values {
   email: string;
-  password: string;
-  confirmPassword: string;
+  senha: string;
 }
 
 const Main = styled.div`
@@ -232,7 +231,7 @@ export default function Login() {
   const handleClick = (values:Values) => {
     Axios.post("http://localhost:3001/login", {
       email: values.email,
-      password: values.password
+      senha: values.senha
     }).then((response) => {
       if (response.status === 200) {
         toggleLogin();
@@ -247,7 +246,7 @@ export default function Login() {
     .string()
     .email("Favor digitar um email válido.")
     .required(""),
-    password: yup
+    senha: yup
     .string()
     .required(""),
   })
@@ -269,10 +268,15 @@ export default function Login() {
             <Formik 
               initialValues={{
                 email: '',
-                password: '',
-                confirmPassword: ''
+                senha: ''
               }}
-              onSubmit={handleClick}
+              onSubmit={(values, { resetForm }) => {
+                setTimeout(() => {
+                  resetForm();
+                }, 200)
+
+                handleClick(values)
+              }}
               validationSchema={validationLogin}
             >
               <Form className="login-form">
@@ -290,7 +294,7 @@ export default function Login() {
 
                 <div className="login-form-group">
                   <div className="input-box">
-                    <Field name="password" className="form-field" placeholder="Senha" type={lockOpen?"text":"password"}/>
+                    <Field name="senha" className="form-field" placeholder="Senha" type={lockOpen?"text":"password"}/>
                     <i 
                       className={`bx ${lockOpen?"bx-lock-open-alt":"bx-lock-alt"}`}
                       id="lock" 

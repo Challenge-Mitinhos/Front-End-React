@@ -100,7 +100,7 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
     } 
 
     const {login, toggleLogin} = context;
-    
+
     return(
         <HeaderComp className={className}>
             <Link to={'/'} className="link">
