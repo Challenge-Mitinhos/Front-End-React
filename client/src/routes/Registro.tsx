@@ -344,7 +344,7 @@ export default function Registro() {
     
     return(
         <div>
-            <Header/>
+            <Header ultimoLink="Início" ultimoLinkDestino="/"/>
             <Main>
                 <Wrapper>
                     <h1 className="register-title">Cadastro</h1>
@@ -409,7 +409,7 @@ export default function Registro() {
                                 </div>
 
                                 <div className="register-form-group">
-                                    <Field name="senha" className="form-field" placeholder="Senha"/>
+                                    <Field name="senha" className="form-field" placeholder="Senha" type="password"/>
 
                                     <ErrorMessage
                                     component="span"
@@ -418,7 +418,7 @@ export default function Registro() {
                                 </div>
 
                                 <div className="register-form-group">
-                                    <Field name="confirmSenha" className="form-field" placeholder="Confirme a Senha"/>
+                                    <Field name="confirmSenha" className="form-field" placeholder="Confirme a Senha" type="password"/>
 
                                     <ErrorMessage
                                     component="span"
