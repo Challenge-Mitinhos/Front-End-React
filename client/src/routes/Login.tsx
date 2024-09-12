@@ -13,175 +13,180 @@ interface Values {
 }
 
 const Main = styled.div`
-  background: url("/img/4076.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background: url("/img/4076.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const Wrapper = styled.div`
-  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
-  backdrop-filter: blur(1em);
-  -webkit-backdrop-filter: blur(1em);
-  border: 2px solid rgba(255,255,255,0.18);
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
-  backdrop-filter: blur(16px);
-  border-radius: 2em;
-  padding: 30px 40px;
-  width: 420px;
-  color: #fff;
-
-  @media screen and (max-width: 520px){
-    width: 400px;
-  }
-
-  @media screen and (max-width: 420px){
-    width: 350px;
-    padding: 15px 25px;
-  }
-
-  .wrapperTitle {
-    text-align: center;
-    font-size: 36px;
-
-    @media screen and (max-width: 520px){
-      font-size: 32px;
-    }
-
-    @media screen and (max-width: 420px){
-      font-size: 28px;
-    }
-  }
-
-  .input-box {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    margin: 30px 0;
-
-    @media screen and (max-width: 520px){
-      margin: 18px 0;
-      height: 45px;
-    }
-  }
-
-  .form-field {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
+    background: linear-gradient(135deg, rgba(83, 83, 83, 0.2), rgba(255,255,255,0));
+    backdrop-filter: blur(1em);
+    -webkit-backdrop-filter: blur(1em);
     border: 2px solid rgba(255,255,255,0.18);
-    border-radius: 40px;
-    font-size: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
+    backdrop-filter: blur(16px);
+    border-radius: 2em;
+    padding: 30px 40px;
+    width: 420px;
     color: #fff;
-    padding: 20px 45px 20px 20px;
-    transition: all 0.3s ease;
 
     @media screen and (max-width: 520px){
-      font-size: 14px;
-    }
-  }
-
-  .form-field::placeholder{
-    color: #fff;
-  }
-
-  i {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
-
-    @media screen and (max-width: 520px){
-      font-size: 18px;
-      right: 18px
-    }
-  }
-
-  .form-error {
-    font-size: 12px;
-    position: absolute;
-    top: 165px;
-    color: rgb(255, 58, 58, 0.85);
-
-    @media screen and (max-width: 520px){
-      top: 139px;
+        width: 400px;
     }
 
     @media screen and (max-width: 420px){
-      font-size: 11px;
-      top: 118px;
+        width: 350px;
+        padding: 15px 25px;
     }
-  }
 
-  .button {
-    width: 100%;
-    height: 45px;
-    background: #01A1FD;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 600;
-    color: #fff;
-    transition: background 0.5s ease, color 0.5s ease;
+    .wrapperTitle {
+        text-align: center;
+        font-size: 36px;
 
-    @media screen and (max-width: 520px){
-      height: 40px;
-      font-size: 16px;
+        @media screen and (max-width: 520px){
+            font-size: 32px;
+        }
+
+        @media screen and (max-width: 420px){
+            font-size: 28px;
+        }
     }
-  }
 
-  .button:hover {
-    background: transparent;
-    box-shadow: inset 0 0 0 2px #01A1FD;
-  }
+    .input-box {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        margin: 30px 0;
 
-  .remember-forgot {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    font-size: 14.5px;
-    margin: -15px 0 15px;
-
-    @media screen and (max-width: 520px){
-      font-size: 12.5px;
-      margin: -5px 0 15px;
+        @media screen and (max-width: 520px){
+            margin: 18px 0;
+            height: 45px;
+        }
     }
-  }
 
-  .remember-forgot a {
-    text-decoration: none;
-    color: #ffffff;
-    transition: all .2s ease;
-  }
+    .form-field {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255,255,255,0.18);
+        border-radius: 40px;
+        font-size: 16px;
+        color: #fff;
+        padding: 20px 45px 20px 20px;
+        transition: all 0.3s ease;
 
-  .remember-forgot a:hover {
-    text-decoration: underline;
-  }
-
-  .check-box {
-    display: flex;
-    gap: 4px;
-  }
-
-  .linkRegistro {
-    font-size: 14.5px;
-    margin: 20px 0 15px;
-    text-align: center;
-
-    @media screen and (max-width: 520px){
-      font-size: 12.5px;
-      margin: 10px 0 5px;
+        @media screen and (max-width: 520px){
+            font-size: 14px;
+        }
     }
-  }
+
+    .form-field::placeholder{
+        color: #fff;
+    }
+
+    i {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+
+        @media screen and (max-width: 520px){
+            font-size: 18px;
+            right: 18px
+        }
+    }
+
+    .form-error {
+        font-size: 12px;
+        position: absolute;
+        top: 165px;
+        color: rgb(255, 58, 58, 0.85);
+
+        @media screen and (max-width: 520px){
+            top: 139px;
+        }
+
+        @media screen and (max-width: 420px){
+            font-size: 11px;
+            top: 118px;
+        }
+    }
+
+    .button {
+        width: 100%;
+        height: 45px;
+        background: #01A1FD;
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+        transition: background 0.5s ease, color 0.5s ease;
+
+        @media screen and (max-width: 520px){
+            height: 40px;
+            font-size: 16px;
+        }
+    }
+
+    .button:hover {
+        background: transparent;
+        box-shadow: inset 0 0 0 2px #01A1FD;
+    }
+
+    .remember-forgot {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        font-size: 14.5px;
+        margin: -15px 0 15px;
+
+        @media screen and (max-width: 520px){
+            font-size: 12.5px;
+            margin: -5px 0 15px;
+        }
+    }
+
+    .remember-forgot a {
+        text-decoration: none;
+        color: #ffffff;
+        transition: all .2s ease;
+    }
+
+    .remember-forgot a:hover {
+        text-decoration: underline;
+    }
+
+    .check-box {
+        display: flex;
+        gap: 4px;
+    }
+
+    .linkRegistro {
+        font-size: 14.5px;
+        margin: 20px 0 15px;
+        text-align: center;
+
+        @media screen and (max-width: 520px){
+            font-size: 12.5px;
+            margin: 10px 0 5px;
+        }
+
+        @media screen and (max-width: 420px){
+            font-size: 10.5px;
+        }
+    }
 
   .linkRegistro a {
     text-decoration: none;
@@ -189,6 +194,14 @@ const Wrapper = styled.div`
     font-size: 15px;
     color: #ffffff;
     transition: all .2s ease;
+
+    @media screen and (max-width: 520px){
+        font-size: 13px;
+    }
+
+    @media screen and (max-width: 420px){
+        font-size: 11px;
+    }
   }
 
   .linkRegistro a:hover {
