@@ -253,7 +253,7 @@ export default function Time() {
 
     return(
         <>  
-            <Header primeiroLink="Início" segundoLink="ChatBot" ultimoLink={logged?"Perfil":"Entrar"} primeiroLinkDestino='/' ultimoLinkDestino='/login' className="header"/>
+            <Header primeiroLink="Início" segundoLink="ChatBot" ultimoLink={logged?"Perfil":"Entrar"} primeiroLinkDestino='/' segundoLinkDestino="/chatbot" ultimoLinkDestino='/login' className="header"/>
             <Content>
                 <ScrollTop/>
                 <FirstSection>

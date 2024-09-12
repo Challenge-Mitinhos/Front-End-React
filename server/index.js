@@ -73,26 +73,48 @@ async function inserirCadastro(user, res) {
             return
         }
         
-        const sqlInsert = user.telefone === '' ? `INSERT INTO USUARIOS (EMAIL_USU, SENHA_USU, NOME_USU, SOBRENOME_USU, CPF_USU) VALUES (:email, :senha, :nome, :sobrenome, :cpf)` 
-        : `INSERT INTO USUARIOS (EMAIL_USU, SENHA_USU, NOME_USU, SOBRENOME_USU, TEL_USU, CPF_USU) VALUES (:email, :senha, :nome, :sobrenome, :telefone, :cpf)`;
+        const sqlInsert = () => {
+            if (user.telefone === '') {
+                return `INSERT INTO USUARIOS (EMAIL_USU, SENHA_USU, NOME_USU, SOBRENOME_USU, CPF_USU) VALUES (:email, :senha, :nome, :sobrenome, :cpf)`
+            } else {
+                return `INSERT INTO USUARIOS (EMAIL_USU, SENHA_USU, NOME_USU, SOBRENOME_USU, TEL_USU, CPF_USU) VALUES (:email, :senha, :nome, :sobrenome, :telefone, :cpf)`
+            }
+        }
         
         const hashedPass = await bcrypt.hash(user.senha, saltRounds);
+        
+        const bindsFilter = () => {
+            if (user.telefone === '') {
+                let binds = {
+                    email: user.email,
+                    senha: hashedPass,
+                    nome: user.nome,
+                    sobrenome: user.sobrenome,
+                    cpf: user.cpf
+                }
+                
+                return binds
+            } else {
+                let binds = {
+                    email: user.email,
+                    senha: hashedPass,
+                    nome: user.nome,
+                    sobrenome: user.sobrenome,
+                    telefone: user.telefone,
+                    cpf: user.cpf
+                };
 
-        const binds = {
-            email: user.email,
-            senha: hashedPass,
-            nome: user.nome,
-            sobrenome: user.sobrenome,
-            telefone: user.telefone,
-            cpf: user.cpf
-        };
+                return binds
+            }
+        
+        }
 
         const options = {
             autoCommit: true,
             outFormat: oracledb.OUT_FORMAT_OBJECT
         };
 
-        await connection.execute(sqlInsert, binds, options);
+        await connection.execute(sqlInsert(), bindsFilter(), options);
         res.status(200).send("Usuário cadastrado com sucesso");
 
     } catch (err) {
