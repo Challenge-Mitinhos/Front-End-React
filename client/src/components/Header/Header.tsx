@@ -139,23 +139,23 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
                         {primeiroLink && (
                             <li>
                                 <Link to={primeiroLinkDestino || ""}>
-                                    <HeaderComponent name={primeiroLink} fontSize="1.5em" />
+                                    <HeaderComponent name={primeiroLink} fontSize="1.4em" />
                                 </Link>
                             </li>)}
                         {segundoLink && (
                             <li>                            
                                 <Link to={segundoLinkDestino || ""}>
-                                    <HeaderComponent name={segundoLink} fontSize="1.5em" />
+                                    <HeaderComponent name={segundoLink} fontSize="1.4em" />
                                 </Link>
                             
                             </li>)}
                         {login === "deslogado" && (<li>
                             <Link to={ultimoLinkDestino||""}>
-                                <HeaderComponent name={ultimoLink} strong/>
+                                <HeaderComponent name={ultimoLink} strong fontSize="1.7em"/>
                             </Link>
                         </li>)}
                         {login === "logado" && (<li>
-                            <HeaderComponent name="Sair" onClick={() => (toggleLogin())} strong/>
+                            <HeaderComponent name="Sair" onClick={() => (toggleLogin())} strong fontSize="1.7em"/>
                         </li>)}
                     </ul>
                 </MenuMobile>
