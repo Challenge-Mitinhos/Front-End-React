@@ -292,7 +292,7 @@ export default function Registro() {
     const handleClickRegister = (values:RegisterValues) => {
         if (validarCpf(values.cpf)) {
             
-            Axios.post("http://localhost:3001/register", {
+            Axios.post("https://back-end-autocare.vercel.app", {
                 nome: values.nome,
                 sobrenome: values.sobrenome,
                 email: values.email,
