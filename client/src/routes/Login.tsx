@@ -242,7 +242,7 @@ export default function Login() {
   const from = location.state?.from?.pathname || '/';
 
   const handleClick = (values:Values) => {
-    Axios.post("https://back-end-autocare.vercel.app", {
+    Axios.post("https://back-end-autocare.vercel.app/login", {
       email: values.email,
       senha: values.senha
     }).then((response) => {
