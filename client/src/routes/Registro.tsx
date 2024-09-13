@@ -4,7 +4,7 @@ import Axios from "axios";
 import InputMask from "react-input-mask";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
-import { validarCpf } from "../util/validarCPF";
+// import { validarCpf } from "../util/validarCPF";
 import styled from "styled-components";
 
 
@@ -290,7 +290,7 @@ export default function Registro() {
     const navigate = useNavigate();
 
     const handleClickRegister = (values:RegisterValues) => {
-        if (validarCpf(values.cpf)) {
+        // if (validarCpf(values.cpf)) {
             
             Axios.post("https://back-end-autocare.vercel.app/register", {
                 nome: values.nome,
@@ -305,9 +305,9 @@ export default function Registro() {
                 }
                 console.log(response)
             });
-        } else {
-            alert("CPF inválido")            
-        }
+        // } else {
+        //     alert("CPF inválido")            
+        // }
     };
 
     const validationRegister = yup.object().shape({
