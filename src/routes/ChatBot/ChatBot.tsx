@@ -14,6 +14,10 @@ const ChatPage = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 768px) {
+        min-height: 80vh;
+    }
 `
 
 const ChatBotBox = styled.div`
@@ -31,9 +35,11 @@ const ChatBotBox = styled.div`
     flex-direction: column;
     justify-content: space-between;
     
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: 768px) {
         width: 90%;
+        height: 75vh;
     }
+    
     .messages{
         height: 90%; 
         overflow-y: scroll;
@@ -61,16 +67,19 @@ const ChatBotBox = styled.div`
         height: 7%;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 16px;
     }
 
     .button-send {
         display: flex;
         align-items: center;
+        justify-content: center;
+        width: 15%;
+        height: 100%;
     }
     
     .button-send img{
-        height: 44px;
+        height: 100%;
     }
     
     .input-message{
@@ -84,7 +93,11 @@ const ChatBotBox = styled.div`
         font-size: 16px;
         padding: 20px 45px 20px 20px;
         transition: all 0.3s ease;
-        color: #fff
+        color: #fff;
+
+        @media screen and (max-width: 768px) {
+            font-size: 14px;
+        }
     }
     
     .input-message::placeholder{
