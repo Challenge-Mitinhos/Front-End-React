@@ -31,6 +31,9 @@ const ChatBotBox = styled.div`
     flex-direction: column;
     justify-content: space-between;
     
+    @media screen and (max-width: 750px) {
+        width: 90%;
+    }
     .messages{
         height: 90%; 
         overflow-y: scroll;
@@ -67,7 +70,7 @@ const ChatBotBox = styled.div`
     }
     
     .button-send img{
-        height: 48px;
+        height: 44px;
     }
     
     .input-message{
@@ -76,12 +79,16 @@ const ChatBotBox = styled.div`
         background: transparent;
         border: none;
         outline: none;
-        border: 2px solid rgba(255,255,255,0.18);
+        border: 2px solid rgba(255, 255, 255, 0.377);
         border-radius: 40px;
         font-size: 16px;
-        color: #fff;
         padding: 20px 45px 20px 20px;
         transition: all 0.3s ease;
+        color: #fff
+    }
+    
+    .input-message::placeholder{
+        color: #fff;
     }`
 
 export default function ChatBot() {
