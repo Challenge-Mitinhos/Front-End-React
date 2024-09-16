@@ -3,6 +3,7 @@ import ChatMessage from '../../components/ChatMessage';
 import React from 'react';
 import Header from '../../components/Header/Header';
 import styled from 'styled-components';
+import { Field, Form, Formik } from 'formik';
 
 const ChatPage = styled.div`
     background: url("/img/44023.jpg");
@@ -19,13 +20,16 @@ const ChatBotBox = styled.div`
     height: 80vh;
     width: 700px; 
     border-radius: 1em;
-    padding: 14px;
+    padding: 20px;
     background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
     backdrop-filter: blur(1em);
     -webkit-backdrop-filter: blur(1em);
     border-radius: 2em;
-    border: 1px solid rgba(255,255,255,0.18);
+    border: 2px solid rgba(255,255,255,0.18);
     box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     
     .messages{
         height: 90%; 
@@ -51,17 +55,37 @@ const ChatBotBox = styled.div`
     
     .send-message{
         width: 100%;
+        height: 7%;
         display: flex;
+        align-items: center;
         gap: 10px;
+    }
+
+    .button-send {
+        display: flex;
+        align-items: center;
     }
     
     .button-send img{
-        height: 2em;
+        height: 48px;
+    }
+    
+    .input-message{
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255,255,255,0.18);
+        border-radius: 40px;
+        font-size: 16px;
+        color: #fff;
+        padding: 20px 45px 20px 20px;
+        transition: all 0.3s ease;
     }`
 
 export default function ChatBot() {
     const [messages, setMessages] = useState<string[]>(["Olá, eu sou o AutoCare Bot! Como posso te ajudar?"]);
-    const [input, setInput] = useState<string>('');
 
     const botMessages = [
         "Você pode me dar mais detalhes ou sintomas?",
@@ -76,17 +100,6 @@ export default function ChatBot() {
 
     const [botIndex, setBotIndex] = useState<number>(0);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
-    const handleSendMessage = () => {
-        if(input.trim()) {
-            setMessages(prevMessages => [...prevMessages, `Você: ${input}`]);
-            setInput("");
-
-            setTimeout(() => {
-                sendBotMessage();
-            }, 500);
-        }
-    }
 
     const sendBotMessage = () => {
         if (botIndex < botMessages.length) {
@@ -137,16 +150,27 @@ export default function ChatBot() {
                         ))}
                         <div ref={messagesEndRef} />
                     </div>
-                    <div className="send-message">
-                        <textarea
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                            placeholder="Digite sua mensagem"
-                        />
-                        <div className="button-send" onClick={handleSendMessage}>
-                            <img src="/img/send-msg.svg" alt="Send Message Button" />
-                        </div>
-                    </div>
+                    <Formik
+                        initialValues={{ inputMessage: '' }}
+                        onSubmit={(values, { resetForm }) => {
+                            setMessages(prevMessages => [...prevMessages, `Você: ${values.inputMessage}`]);
+                            sendBotMessage();
+                            resetForm();
+                        }}
+                    >
+                        {({ handleSubmit, submitForm }) => (
+                            <Form className="send-message" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+                                <Field 
+                                    name="inputMessage" 
+                                    placeholder="Digite sua mensagem"
+                                    className="input-message"
+                                />                            
+                                <div className="button-send" onClick={submitForm}>
+                                    <img src="/img/send-msg.svg" alt="Send Message Button" />
+                                </div>
+                            </Form>
+                        )}
+                    </Formik>
                 </ChatBotBox>
             </ChatPage>
         </div>
