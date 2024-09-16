@@ -4,8 +4,8 @@ import Axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import Header from "../components/Header/Header";
-import { LoginContext } from "../context/LoginContext";
+import Header from "../../components/Header/Header";
+import { LoginContext } from "../../context/LoginContext";
 
 interface Values {
   email: string;

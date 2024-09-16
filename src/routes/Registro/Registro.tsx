@@ -1,9 +1,9 @@
-import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
+import { Formik, Form, Field, FieldProps, ErrorMessage, useFormikContext } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
 import InputMask from "react-input-mask";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../components/Header/Header";
+import Header from "../../components/Header/Header";
 // import { validarCpf } from "../util/validarCPF";
 import styled from "styled-components";
 
@@ -27,7 +27,7 @@ const CpfField = ({ className }:CustomFieldProps) => {
 
     return (
         <Field name="cpf">
-            {({field}: any) => (
+            {({field}:FieldProps) => (
                 <InputMask
                     {...field}
                     mask="999.999.999-99"
@@ -48,7 +48,7 @@ const TelField = ({ className }:CustomFieldProps) => {
 
     return (
         <Field name="telefone">
-            {({field} :any) => (
+            {({field}:FieldProps) => (
                 <InputMask
                     {...field}
                     mask="(99) 99999-9999"

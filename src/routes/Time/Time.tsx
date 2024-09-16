@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Header from "../components/Header/Header";
+import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
-import ScrollTop from "../components/ScrollTop";
+import ScrollTop from "../../components/ScrollTop";
 
 const Content = styled.div`
     display: flex;

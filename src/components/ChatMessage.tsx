@@ -18,7 +18,7 @@ const Mensagem = styled.div<MessageProps>`
     display: inline-block;
     padding: 10px;
     border-radius: 10px;
-    background: ${(props) => (props.isUserMessage ? '#77ccfe' : '#e0e0e0')};
+    background: ${(props) => (props.isUserMessage ? '#77ccfe' : '#ffffff')};
     max-width: 80%;
     word-wrap: break-word; // Adiciona quebra de linha automática
     overflow-wrap: break-word;`

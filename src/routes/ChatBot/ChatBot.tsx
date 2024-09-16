@@ -1,14 +1,69 @@
 import { useEffect, useRef, useState } from 'react';
-import ChatMessage from '../components/ChatMessage';
+import ChatMessage from '../../components/ChatMessage';
 import React from 'react';
-import Header from '../components/Header/Header';
+import Header from '../../components/Header/Header';
+import styled from 'styled-components';
+
+const ChatPage = styled.div`
+    background: url("/img/44023.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const ChatBotBox = styled.div`
+    height: 80vh;
+    width: 700px; 
+    border-radius: 1em;
+    padding: 14px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    backdrop-filter: blur(1em);
+    -webkit-backdrop-filter: blur(1em);
+    border-radius: 2em;
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
+    
+    .messages{
+        height: 90%; 
+        overflow-y: scroll;
+        border-radius: 1em;
+
+        &::-webkit-scrollbar-track{
+            border-radius: 10px;
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar{            
+            min-height: 8px;
+            width: 12px;
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb{
+            border-radius: 10px;
+            background-color: #e0e0e0;   
+        }
+    }
+    
+    .send-message{
+        width: 100%;
+        display: flex;
+        gap: 10px;
+    }
+    
+    .button-send img{
+        height: 2em;
+    }`
 
 export default function ChatBot() {
-    const [messages, setMessages] = useState<string[]>([]);
+    const [messages, setMessages] = useState<string[]>(["Olá, eu sou o AutoCare Bot! Como posso te ajudar?"]);
     const [input, setInput] = useState<string>('');
 
     const botMessages = [
-        "Olá, eu sou o AutoCare Bot! Como posso te ajudar?",
         "Você pode me dar mais detalhes ou sintomas?",
         "Verifiquei que você não possui nenhum veículo cadastrado. Para poder analisar melhor o seu problema, por favor, me informe a marca e modelo de seu veículo.",
         "Qual o ano de fabricação do seu veículo",
@@ -38,7 +93,7 @@ export default function ChatBot() {
             setTimeout(() => {
                 setMessages(prevMessages => [...prevMessages, `AutoCare Bot: ${botMessages[botIndex]}`]);
 
-                if (botIndex === 6) {
+                if (botIndex === 5) {
                     setTimeout(() => {
                     setMessages(prevMessages => [...prevMessages, `AutoCare Bot: ${botMessages[botIndex+1]}`])
                     setBotIndex(prevIndex => prevIndex +2);
@@ -69,32 +124,31 @@ export default function ChatBot() {
 
     return (
         <div>
-            <Header/>
-            <div style={{height: '90vh'}}>
-                <div style={{ height: '90%', overflowY: 'scroll', border: '1px solid #ddd', padding: '10px' }}>
-                    {messages.map((msg, index) => (
-                        <ChatMessage
-                            key={index}
-                            text={formatMessage(msg)}
-                            isUserMessage={msg.startsWith('Você')}
-                        />
-                    ))}
-                    <div ref={messagesEndRef} />
-                </div>
-                <div style={{ marginTop: '10px' }}>
-                    <div style={{ display:'flex' }}>
+            <Header primeiroLink='Início' segundoLink='Time' primeiroLinkDestino='/' segundoLinkDestino='/time'/>
+            <ChatPage>
+                <ChatBotBox>
+                    <div className='messages'>
+                        {messages.map((msg, index) => (
+                            <ChatMessage
+                                key={index}
+                                text={formatMessage(msg)}
+                                isUserMessage={msg.startsWith('Você')}
+                            />
+                        ))}
+                        <div ref={messagesEndRef} />
+                    </div>
+                    <div className="send-message">
                         <textarea
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        style={{ width: '80%' }}
-                        placeholder="Digite sua mensagem"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            placeholder="Digite sua mensagem"
                         />
-                        <div onClick={handleSendMessage} style={{ width: '17%' }}>
-                            <img src="/img/send-msg.svg" alt="Send Message Button" style={{width: '100%'}} />
+                        <div className="button-send" onClick={handleSendMessage}>
+                            <img src="/img/send-msg.svg" alt="Send Message Button" />
                         </div>
                     </div>
-                </div>
-            </div>
+                </ChatBotBox>
+            </ChatPage>
         </div>
     );
 };

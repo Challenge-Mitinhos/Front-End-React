@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext";
 
 const HeaderComp = styled.div`
+    background: #fff;
     height: 10vh;
     display: flex;
     justify-content: space-between;
