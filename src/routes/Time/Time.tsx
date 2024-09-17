@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 import ScrollTop from "../../components/ScrollTop";
+import Footer from "../../components/Footer/Footer";
 
 const Content = styled.div`
     display: flex;
@@ -291,7 +292,7 @@ export default function Time() {
                             <i/>
                             <div className="textBlock">
                                 <h1>Mikael Sanches</h1>
-                                <p>Analista e Desenvolvedor de Sistemas</p>
+                                <p>1TDSPM - RM558887</p>
                             </div>
                         </Card>
                         <Card>
@@ -315,7 +316,7 @@ export default function Time() {
                             <img src="/img/cards/CardMurilo.png" alt="foto do colaborador Murilo" className="photo" />
                             <div className="textBlock">
                                 <h1>Murilo Capristo</h1>
-                                <p>Analista e Desenvolvedor de Sistemas</p>
+                                <p>1TDSPM - RM556794</p>
                             </div>
                         </Card>
                         <Card>
@@ -339,12 +340,13 @@ export default function Time() {
                             <img src="/img/cards/CardPaula.png" alt="foto do colaborador Paula" className="photo" />
                             <div className="textBlock">
                                 <h1>Paula Blesa</h1>
-                                <p>Analista e Desenvolvedor de Sistemas</p>
+                                <p>1TDSPM - RM558277</p>
                             </div>
                         </Card>
                     </TimeWrapper>
                 </SecondSection>
             </Content>
+            <Footer/>
         </>
     )
 }

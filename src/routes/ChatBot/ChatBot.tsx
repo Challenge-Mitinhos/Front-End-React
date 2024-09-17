@@ -4,6 +4,7 @@ import React from 'react';
 import Header from '../../components/Header/Header';
 import styled from 'styled-components';
 import { Field, Form, Formik } from 'formik';
+import Footer from '../../components/Footer/Footer';
 
 const ChatPage = styled.div`
     background: url("/img/44023.jpg");
@@ -134,7 +135,7 @@ export default function ChatBot() {
                 } else {
                     setBotIndex(prevIndex => prevIndex+1);
                 }
-            }, 500);
+            }, 700);
         }
     }
 
@@ -148,7 +149,11 @@ export default function ChatBot() {
       };
 
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        const messagesContainer = messagesEndRef.current?.parentElement;
+
+        if (messagesContainer) {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
     };
     
     useEffect(() => {
@@ -156,7 +161,7 @@ export default function ChatBot() {
     }, [messages]);
 
     return (
-        <div>
+        <>
             <Header primeiroLink='Início' segundoLink='Time' primeiroLinkDestino='/' segundoLinkDestino='/time'/>
             <ChatPage>
                 <ChatBotBox>
@@ -193,6 +198,7 @@ export default function ChatBot() {
                     </Formik>
                 </ChatBotBox>
             </ChatPage>
-        </div>
+            <Footer/>
+        </>
     );
 };
