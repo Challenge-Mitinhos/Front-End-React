@@ -85,12 +85,14 @@ type HeaderProps = {
     primeiroLinkDestino?:string,
     segundoLink?:string,
     segundoLinkDestino?:string,
+    terceiroLink?:string,
+    terceiroLinkDestino?:string,
     ultimoLink?:string,
     ultimoLinkDestino?:string,
     className?:string;
 }
 
-export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,segundoLinkDestino,ultimoLink,ultimoLinkDestino,className}:HeaderProps) {
+export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,segundoLinkDestino,terceiroLink,terceiroLinkDestino,ultimoLink,ultimoLinkDestino,className}:HeaderProps) {
     
     const [modalOpen,setModalOpen] = useState(false);
 
@@ -109,16 +111,24 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
             </Link>
             <Buttons>
                 <ul className="list">
-                    <li>
-                        <Link to={primeiroLinkDestino||""}>
-                            <HeaderComponent name={primeiroLink}/>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to={segundoLinkDestino||""}>
-                            <HeaderComponent name={segundoLink}/>
-                        </Link>
-                    </li>
+                    {primeiroLink && (
+                        <li>
+                            <Link to={primeiroLinkDestino||""}>
+                                <HeaderComponent name={primeiroLink}/>
+                            </Link>
+                        </li>)}
+                    {segundoLink && (
+                        <li>
+                            <Link to={segundoLinkDestino||""}>
+                                <HeaderComponent name={segundoLink}/>
+                            </Link>
+                        </li>)}
+                    {terceiroLink && (
+                        <li>
+                            <Link to={terceiroLinkDestino||""}>
+                                <HeaderComponent name={terceiroLink}/>
+                            </Link>
+                        </li>)}
                     {login === "deslogado" && (<li>
                         <Link to={ultimoLinkDestino||""}>
                             <HeaderComponent name={ultimoLink} strong/>

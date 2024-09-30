@@ -1,15 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import "./styles/global.css"
-import Home from './routes/Home/Home.tsx'
-import Time from './routes/Time/Time.tsx'
-import ChatBot from './routes/ChatBot/ChatBot.tsx'
+import Home from './routes/Home/index.tsx'
+import Time from './routes/Time/index.tsx'
+import ChatBot from './routes/ChatBot/index.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Login from './routes/Login/Login.tsx'
-import Registro from './routes/Registro/Registro.tsx'
+import Login from './routes/Login/index.tsx'
+import Registro from './routes/Registro/index.tsx'
 import App from './App.tsx'
 import { LoginProvider } from './context/LoginContext.tsx'
-import { ProtectedRoute } from './routes/ProtectedRoute/ProtectedRoute.tsx'
+import { ProtectedRoute } from './routes/ProtectedRoute/index.tsx'
+import Profile from './routes/Profile/index.tsx'
 
 const router = createBrowserRouter([
   { path: '/',
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: 'chatbot',
         element: <ProtectedRoute><ChatBot/></ProtectedRoute>
+      },
+      {
+        path: 'perfil',
+        element: <Profile/>
       },
       {
         path: 'login',

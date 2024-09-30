@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+ import { useEffect, useRef, useState } from 'react';
 import ChatMessage from '../../components/ChatMessage';
 import React from 'react';
 import Header from '../../components/Header/Header';
@@ -107,36 +107,21 @@ const ChatBotBox = styled.div`
 
 export default function ChatBot() {
     const [messages, setMessages] = useState<string[]>(["Olá, eu sou o AutoCare Bot! Como posso te ajudar?"]);
-
-    const botMessages = [
-        "Você pode me dar mais detalhes ou sintomas?",
-        "Verifiquei que você não possui nenhum veículo cadastrado. Para poder analisar melhor o seu problema, por favor, me informe a marca e modelo de seu veículo.",
-        "Qual o ano de fabricação do seu veículo",
-        "Seu veículo dá sinais Vazamento de Gasolina, o que pode acarretar em riscos a sua saúde. Sua manutenção tem um custo médio de R$880,00, deseja se dirigir a um parceiro para avaliação precisa?",
-        "Certo. Para que eu possa te direcionar a um de nossos parceiros, por favor, qual a sua localização?",
-        "Verificando...",
-        "De acordo com a sua localização: Av. Paulista, 1106. - Bela Vista, São Paulo - SP. Os parceiros mais próximos são:\n1. (Bela Vista Automotivos) - 7 min.\n2. (Auto Mecânica Mecha) - 9 min.\n3. (Auto Fix Car) - 12min.\nPara qual parceiro deseja ser encaminhado?" ,
-        "Já enviei as suas informações para a oficina parceira, que está no seu aguardo. Para mais suporte, entre em contato novamente. Obrigado por utilizar o AutoCare Bot."
-    ];
-
-    const [botIndex, setBotIndex] = useState<number>(0);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-    const sendBotMessage = () => {
-        if (botIndex < botMessages.length) {
-            setTimeout(() => {
-                setMessages(prevMessages => [...prevMessages, `AutoCare Bot: ${botMessages[botIndex]}`]);
+    const sendMessage = async (userInput : string) => {
+        const message = userInput;
 
-                if (botIndex === 5) {
-                    setTimeout(() => {
-                    setMessages(prevMessages => [...prevMessages, `AutoCare Bot: ${botMessages[botIndex+1]}`])
-                    setBotIndex(prevIndex => prevIndex +2);
-                    }, 2000);
-                } else {
-                    setBotIndex(prevIndex => prevIndex+1);
-                }
-            }, 700);
-        }
+        const response = await fetch('http://localhost:9001/chatbot', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ mensagem: message}),
+        });
+
+        const data = await response.json();
+        setMessages(prevMessages => [...prevMessages, `AutoCare Bot: ${data.resposta}`]);
     }
 
     const formatMessage = (text: string) => {
@@ -179,7 +164,7 @@ export default function ChatBot() {
                         initialValues={{ inputMessage: '' }}
                         onSubmit={(values, { resetForm }) => {
                             setMessages(prevMessages => [...prevMessages, `Você: ${values.inputMessage}`]);
-                            sendBotMessage();
+                            sendMessage(values.inputMessage);
                             resetForm();
                         }}
                     >
