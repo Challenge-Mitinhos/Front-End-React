@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
-import { LoginContext } from "../../context/LoginContext";
 
 const Background = styled.div`
     height: 90vh;
@@ -150,17 +149,9 @@ export default function Home() {
 
     const navigate = useNavigate();
 
-    const context = useContext(LoginContext);
-
-    if (!context) {
-        throw new Error("LoginComponent LoginProvider")
-    } 
-
-    const {login} = context;
-
     return(
         <>
-            <Header primeiroLink="Time" segundoLink="ChatBot" terceiroLink={login == "logado"? "Perfil":""} terceiroLinkDestino="/perfil" ultimoLink="Entrar" primeiroLinkDestino='/time' segundoLinkDestino='/chatbot' ultimoLinkDestino='/login' />
+            <Header primeiroLink="Time" segundoLink="ChatBot" ultimoLink="Entrar" primeiroLinkDestino='/time' segundoLinkDestino='/chatbot' ultimoLinkDestino='/login' />
             <Background>
                 <Glass>
                     <Image src="/img/Robotics-cuate.svg" alt="RobotIMG" style={{height:"32vw", width:"32vw"}}/>

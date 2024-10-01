@@ -1,4 +1,4 @@
- import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ChatMessage from '../../components/ChatMessage';
 import React from 'react';
 import Header from '../../components/Header/Header';
@@ -19,7 +19,7 @@ const ChatPage = styled.div`
     @media screen and (max-width: 768px) {
         min-height: 80vh;
     }
-`
+`;
 
 const ChatBotBox = styled.div`
     height: 80vh;
@@ -103,26 +103,34 @@ const ChatBotBox = styled.div`
     
     .input-message::placeholder{
         color: #fff;
-    }`
+    }
+`;
 
 export default function ChatBot() {
-    const [messages, setMessages] = useState<string[]>(["Olá, eu sou o AutoCare Bot! Como posso te ajudar?"]);
+    const [messages, setMessages] = useState<string[]>(["AutoCare Bot: Olá, eu sou o AutoCare Bot! Como posso te ajudar?"]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [dots, setDots] = useState(0);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-    const sendMessage = async (userInput : string) => {
+    const sendMessage = async (userInput: string) => {
         const message = userInput;
 
-        const response = await fetch('http://localhost:9001/chatbot', {
+        setIsLoading(true);
+        setDots(0);
+
+        // Faz a requisição
+        const response = await fetch('https://autocareai.azurewebsites.net/chatbot', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ mensagem: message}),
+            body: JSON.stringify({ mensagem: message }),
         });
 
         const data = await response.json();
         setMessages(prevMessages => [...prevMessages, `AutoCare Bot: ${data.resposta}`]);
-    }
+        setIsLoading(false);
+    };
 
     const formatMessage = (text: string) => {
         return text.split('\n').map((line, index) => (
@@ -131,23 +139,35 @@ export default function ChatBot() {
                 <br />
             </React.Fragment>
         ));
-      };
+    };
 
     const scrollToBottom = () => {
         const messagesContainer = messagesEndRef.current?.parentElement;
-
         if (messagesContainer) {
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
     };
-    
+
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
 
+    useEffect(() => {
+        let interval: number;
+        if (isLoading) {
+            interval = setInterval(() => {
+                setDots(prevDots => (prevDots + 1) % 4);3
+            }, 400);
+
+        }
+        return () => {
+            clearInterval(interval);
+        };
+    }, [isLoading]);
+
     return (
         <>
-            <Header primeiroLink='Início' segundoLink='Time' primeiroLinkDestino='/' segundoLinkDestino='/time'/>
+            <Header primeiroLink='Início' segundoLink='Time' primeiroLinkDestino='/' segundoLinkDestino='/time' />
             <ChatPage>
                 <ChatBotBox>
                     <div className='messages'>
@@ -158,6 +178,7 @@ export default function ChatBot() {
                                 isUserMessage={msg.startsWith('Você')}
                             />
                         ))}
+                        {isLoading && <ChatMessage text={`AutoCare Bot: ${'.'.repeat(dots)}`} isUserMessage={false} />} {/* Exibe a animação */}
                         <div ref={messagesEndRef} />
                     </div>
                     <Formik
@@ -170,11 +191,11 @@ export default function ChatBot() {
                     >
                         {({ handleSubmit, submitForm }) => (
                             <Form className="send-message" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
-                                <Field 
-                                    name="inputMessage" 
+                                <Field
+                                    name="inputMessage"
                                     placeholder="Digite sua mensagem"
                                     className="input-message"
-                                />                            
+                                />
                                 <div className="button-send" onClick={submitForm}>
                                     <img src="/img/send-msg.svg" alt="Send Message Button" />
                                 </div>
@@ -183,7 +204,7 @@ export default function ChatBot() {
                     </Formik>
                 </ChatBotBox>
             </ChatPage>
-            <Footer/>
+            <Footer />
         </>
     );
-};
+}
