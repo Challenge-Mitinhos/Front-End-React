@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
 import { LoginContext } from "../../context/LoginContext";
+import Loader from "../../components/Loader";
 
 interface Values {
   email: string;
@@ -317,7 +318,7 @@ export default function Login() {
                     ></i>
                   </div>
                 </div>
-
+                <Loader/>
                 <div className="remember-forgot">
                     <label className="check-box">
                       <Field name="remember" className="remember" type="checkbox"/>

@@ -119,7 +119,7 @@ export default function ChatBot() {
         setDots(0);
 
         // Faz a requisição
-        const response = await fetch('https://autocareai.azurewebsites.net/chatbot', {
+        const response = await fetch('https://autocareia.azurewebsites.net/chatbot', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
